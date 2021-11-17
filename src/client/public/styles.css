@@ -1,0 +1,23 @@
+::-webkit-scrollbar {
+    background-color: #000000;
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #babac093;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+body {
+    color: #FFFFFF;
+    background-color: #212938;
+    font-family: "Roboto", sans-serif;
+}
