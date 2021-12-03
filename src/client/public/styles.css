@@ -132,6 +132,17 @@ body {
 
 .overview-panel-sensor-label {
     margin-bottom: 0.8em;
+    font-size: 1.4em;
+}
+
+.overview-panel-value-code-block-container {
+    margin-bottom: 0.8em;
+    padding: 0.4em;
+    background-color: #3f454f56;
+    border-radius: 0.4em;
+}
+
+.overview-panel-code-block-container>code {
     font-size: 1.2em;
 }
 
@@ -139,8 +150,11 @@ body {
     margin-top: 0.8em;
     padding: 2vh;
     background-color: #3f454f56;
-    font-size: 1em;
     border-radius: 1vh;
+}
+
+.overview-panel-code-block-container>code {
+    font-size: 1em;
 }
 
 .graph {

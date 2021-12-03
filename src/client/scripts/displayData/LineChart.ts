@@ -1,6 +1,5 @@
-import { GraphData } from '../../../global/types';
+import { SensorData } from '../../../global/types';
 
-// Import modules.
 import { Chart, Decimation, LineController, PointElement, LineElement, LinearScale, TimeScale, Title, Tooltip } from 'chart.js';
 import 'chartjs-adapter-luxon';
 
@@ -16,7 +15,7 @@ export default class LineChart extends Chart {
      * @param ctx The canvas context to draw the chart on.
      * @param data Data to draw on the chart.
      */
-    constructor(ctx: any, data: GraphData[number]) {
+    constructor(ctx: any, data: SensorData) {
         super(ctx, {
             type: `line`,
             data: { datasets: [
@@ -26,7 +25,7 @@ export default class LineChart extends Chart {
                     borderWidth: 1,
                     data: data.data,
                     indexAxis: `x`,
-                    label: data.label
+                    label: data.name
                 }
             ] },
             options: {
@@ -47,7 +46,7 @@ export default class LineChart extends Chart {
                     },
                     title: {
                         display: true,
-                        text: data.label
+                        text: data.name
                     }
                 },
                 responsive: true,
@@ -64,7 +63,7 @@ export default class LineChart extends Chart {
                     y: {
                         title: {
                             display: true,
-                            text: data.yLabel
+                            text: data.units
                         },
                         grid: { color: `rgba(0, 0, 0, 0.4)` }, type: `linear`
                     }

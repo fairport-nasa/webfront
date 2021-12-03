@@ -1,13 +1,12 @@
-import { GraphData } from '../../../global/types';
+import { RESTGetData } from '../../../global/types';
 
-// Import modules.
 import { get } from 'jquery';
 
 /**
  * @param route The route from /data to use. Defaults to empty string.
  * @returns Fetched data.
  */
-export default (route = ``): Promise<GraphData> => {
+export default (route = ``): Promise<RESTGetData> => {
     return new Promise((resolve, reject) => {
         get({
             url: `/data${route}`,

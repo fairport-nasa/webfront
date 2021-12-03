@@ -1,8 +1,7 @@
 import Config from '../config/Config';
 import createDummyData from '../utils/createDummyData';
-import { GraphData } from '../../global/types';
+import { RESTGetData } from '../../global/types';
 
-// Import modules.
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import { resolve } from 'path';
@@ -20,13 +19,14 @@ export default async (): Promise<void> => {
     });
 
     server.get(`/data`, (req, res) => {
-        const data: GraphData = [];
+        const data: RESTGetData = [];
         for (let i = 0; i <= 9; i++) {
             data.push({
                 color: `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`,
                 data: createDummyData(Date.now() - 30 * 86400 * 1e3, Date.now(), 5000, 750, -2.99, 3),
-                label: `Random data ${i}`,
-                yLabel: `Unit`
+                id: `example_id_${i}`,
+                name: `Random Data ${i}`,
+                units: `Unit`
             });
         }
         res.send(data);

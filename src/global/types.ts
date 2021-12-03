@@ -1,9 +1,35 @@
 /**
- * Payload sent from the /data endpoint.
+ * Data from a sensor.
  */
-export type GraphData = Array<{
+export interface SensorData {
+    /**
+     * The color to display on the graph.
+     */
     color: string
+    /**
+     * The data from the sensor.
+     */
     data: Array<{ x: number, y: number }>
-    label: string
-    yLabel: string
-}>;
+    /**
+     * The sensor's ID.
+     */
+    id: string
+    /**
+     * The sensor's name.
+     */
+    name: string
+    /**
+     * The units used by the sensor.
+     */
+    units: string
+}
+
+/**
+ * The payload sent from /data
+ */
+export type RESTGetData = SensorData[];
+
+/**
+ * The payload for a sensor update sent via the websocket.
+ */
+export type SocketSensorUpdate = Partial<SensorData> & { id: string };
