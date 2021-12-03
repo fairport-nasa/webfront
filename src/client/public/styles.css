@@ -16,8 +16,135 @@
     display: none;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    color: #FFFFFF;
+    width: 100%;
+    height: 100%s;
+    color: #ffffff;
     background-color: #212938;
     font-family: "Roboto", sans-serif;
+}
+
+.progress-bar {
+    position: relative;
+    height: 1.2em;
+    padding: 0.3em;
+    background: #4671c748;
+    border-radius: 1.2em;
+}
+
+.progress-bar>span {
+    display: block;
+    position: relative;
+    height: 100%;
+    text-align: center;
+    background-color: #4671c7;
+    font-weight: 700;
+    border-radius: 0.6em;
+    overflow: hidden;
+}
+
+/* Navbar */
+.navbar-container {
+    display: flex;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    left: 0;
+    width: 95%;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    background-color: #5e82cae7;
+    font-size: 1.5em;
+    gap: 2.5vw;
+    flex-wrap: nowrap;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.navbar-container>button {
+    padding: 0.4em;
+    color: #ffffff;
+    background-color: #00000033;
+    font-size: 0.6em;
+    font-weight: 500;
+    border-color: #00000000;
+    border-radius: 1em;
+    transition: all 0.5s ease;
+}
+
+.navbar-container>button:hover {
+    background-color: #00000048;
+    cursor: pointer;
+}
+
+/* Data */
+.data-container {
+    display: flex;
+    top: 0;
+    left: 0;
+    padding: 2.5%;
+    flex-wrap: wrap;
+    gap: 2.5vw;
+}
+
+.data-container>* {
+    padding: 1.5vw;
+    background-color: #121824;
+    border-radius: 2.5vh;
+    filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.5));
+    -webkit-filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.5));
+    transition: all 0.5s ease;
+}
+
+.data-container>*:hover {
+    background-color: #141b27;
+    filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.5));
+    -webkit-filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.5));
+}
+
+.overview-panel {
+    display: flex;
+    width: 80vw;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 1.25vw;
+}
+
+.overview-panel>* {
+    padding: 2.5vh;
+    width: 25vw;
+    background-color: #00000038;
+    border-radius: 2vh;
+    flex-grow: 1;
+    transition: all 0.5s ease;
+}
+
+.overview-panel>*:hover {
+    background-color: #0000004a;
+}
+
+.overview-panel-sensor-label {
+    margin-bottom: 0.8em;
+    font-size: 1.2em;
+}
+
+.overview-panel-code-block-container {
+    margin-top: 0.8em;
+    padding: 2vh;
+    background-color: #3f454f56;
+    font-size: 1em;
+    border-radius: 1vh;
+}
+
+.graph {
+    width: 40vw;
+    height: 40vh;
+    flex-grow: 1;
 }

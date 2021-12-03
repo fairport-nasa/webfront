@@ -1,3 +1,5 @@
+import { GraphData } from '../../../global/types';
+
 // Import modules.
 import { get } from 'jquery';
 
@@ -5,7 +7,7 @@ import { get } from 'jquery';
  * @param route The route from /data to use. Defaults to empty string.
  * @returns Fetched data.
  */
-export default (route = ``): Promise<Array<{ x: number, y: number }>> => {
+export default (route = ``): Promise<GraphData> => {
     return new Promise((resolve, reject) => {
         get({
             url: `/data${route}`,

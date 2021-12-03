@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Document Setup -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Set website metadata -->
+    <title>NanoLab GUI</title>
+    <meta name="description"
+        content="NanoLab Software GUI">
+    <meta name="theme-color" content="#1F85DE">
+    <meta property="og:title" content="NanoLab GUI">
+    <meta property="og:description"
+        content="NanoLab Software GUI">
+
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="/styles.css">
+
+    <!-- Import Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="navbar-container" class="navbar-container">
+        <h3 id="page-title">Nanolab GUI</h3>
+        <button id="functions-button">Functions</button>
+        <button id="sensors-button">Sensors</button>
+        <button id="general-config-button">General Config</button>
+    </div>
+
+    <div id="data-container" class="data-container">
+        <div id="overview-panel" class="overview-panel">
+            <!-- temp -->
+            <div>
+                <p class="overview-panel-sensor-label">Sensor 1</p>
+                <div class="progress-bar">
+                    <span style="width: 23%">23 units</span>
+                </div>
+                <div class="overview-panel-code-block-container">
+                    <code>
+                        - ID: sample_id
+                        <br>
+                        - Units: sample_unit
+                        <br>
+                        - Data Points: 134,782
+                        <br>
+                        <br>
+                    </code>
+                </div>
+            </div>
+
+            <div>
+                <p class="overview-panel-sensor-label">Sensor 2</p>
+                <div class="progress-bar">
+                    <span style="width: 87%">87 units</span>
+                </div>
+                <div class="overview-panel-code-block-container">
+                    <code>
+                        - ID: sample_id
+                        <br>
+                        - Units: sample_unit
+                        <br>
+                        - Data Points: 134,357
+                        <br>
+                        <br>
+                    </code>
+                </div>
+            </div>
+
+            <div>
+                <p class="overview-panel-sensor-label">Sensor 3</p>
+                <div class="progress-bar">
+                    <span style="width: 46%">46 units</span>
+                </div>
+                <div class="overview-panel-code-block-container">
+                    <code>
+                        - ID: sample_id
+                        <br>
+                        - Units: sample_unit
+                        <br>
+                        - Data Points: 133,989
+                        <br>
+                        <br>
+                    </code>
+                </div>
+            </div>
+
+            <div>
+                <p class="overview-panel-sensor-label">Sensor 4</p>
+                <div class="progress-bar">
+                    <span style="width: 56%">56 units</span>
+                </div>
+                <div class="overview-panel-code-block-container">
+                    <code>
+                        - ID: sample_id
+                        <br>
+                        - Units: sample_unit
+                        <br>
+                        - Data Points: 135,457
+                        <br>
+                        <br>
+                    </code>
+                </div>
+            </div>
+
+            <div>
+                <p class="overview-panel-sensor-label">Sensor 5</p>
+                <div class="progress-bar">
+                    <span style="width: 16%">16 units</span>
+                </div>
+                <div class="overview-panel-code-block-container">
+                    <code>
+                        - ID: sample_id
+                        <br>
+                        - Units: sample_unit
+                        <br>
+                        - Data Points: 134,149
+                        <br>
+                        <br>
+                    </code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/webpack.bundle.js"></script>
+</body>
+
+</html>

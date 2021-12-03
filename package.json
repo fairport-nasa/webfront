@@ -25,18 +25,16 @@
   "homepage": "https://github.com/fairport-nasa/webfront",
   "dependencies": {
     "@influxdata/influxdb-client": "^1.20.0",
-    "body-parser": "^1.19.0",
     "chart.js": "^3.6.0",
     "chartjs-adapter-luxon": "^1.1.0",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "fastify": "^3.24.0",
+    "fastify-static": "^4.5.0",
     "jquery": "^3.6.0",
-    "luxon": "^2.0.2",
-    "socket.io": "^4.3.1"
+    "luxon": "^2.0.2"
   },
   "devDependencies": {
     "@br88c/eslint-config": "^1.2.0",
-    "@types/express": "^4.17.13",
     "@types/jquery": "^3.5.8",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",

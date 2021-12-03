@@ -5,7 +5,6 @@ require(`dotenv`).config();
 
 module.exports = {
     entry: `./src/client/scripts/main.ts`,
-    devtool: `inline-source-map`,
     mode: process.env.NODE_ENV === `prod` ? `production` : `development`,
     module: {
         rules: [
@@ -27,8 +26,7 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: path.resolve(__dirname, `src/client/public`), to: path.resolve(__dirname, `dist/client/public`) },
-                { from: path.resolve(__dirname, `src/client/views`), to: path.resolve(__dirname, `dist/client/views`) },
+                { from: path.resolve(__dirname, `src/client/public`), to: path.resolve(__dirname, `dist/client/public`) }
             ],
         }),
     ]
