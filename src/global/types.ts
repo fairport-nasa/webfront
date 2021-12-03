@@ -19,6 +19,10 @@ export interface SensorData {
      */
     name: string
     /**
+     * The sensor's maximum value.
+     */
+    max: number
+    /**
      * The units used by the sensor.
      */
     units: string

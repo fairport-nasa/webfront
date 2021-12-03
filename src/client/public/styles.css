@@ -109,7 +109,7 @@ body {
     -webkit-filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.5));
 }
 
-.overview-panel {
+.sensor-overview-panel-container {
     display: flex;
     width: 80vw;
     flex-grow: 1;
@@ -117,7 +117,7 @@ body {
     gap: 1.25vw;
 }
 
-.overview-panel>* {
+.sensor-overview-panel {
     padding: 2.5vh;
     width: 25vw;
     background-color: #00000038;
@@ -126,38 +126,48 @@ body {
     transition: all 0.5s ease;
 }
 
-.overview-panel>*:hover {
+.sensor-overview-panel:hover {
     background-color: #0000004a;
 }
 
-.overview-panel-sensor-label {
+.sensor-overview-panel-name {
     margin-bottom: 0.8em;
     font-size: 1.4em;
 }
 
-.overview-panel-value-code-block-container {
-    margin-bottom: 0.8em;
+.sensor-overview-panel-value-container {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.sensor-overview-panel-value-text-container {
+    width: fit-content;
     padding: 0.4em;
     background-color: #3f454f56;
     border-radius: 0.4em;
 }
 
-.overview-panel-code-block-container>code {
-    font-size: 1.2em;
+.sensor-overview-panel-value-text {
+    font-size: 1.4em;
 }
 
-.overview-panel-code-block-container {
+.sensor-overview-panel-value-bar-container {
+    flex-grow: 1;
+}
+
+.sensor-overview-panel-detail-container {
     margin-top: 0.8em;
     padding: 2vh;
     background-color: #3f454f56;
     border-radius: 1vh;
 }
 
-.overview-panel-code-block-container>code {
+.sensor-overview-panel-detail {
     font-size: 1em;
 }
 
-.graph {
+.sensor-graph-container {
     width: 40vw;
     height: 40vh;
     flex-grow: 1;

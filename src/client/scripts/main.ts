@@ -7,7 +7,7 @@ import $ from 'jquery';
 (async () => {
     const data = await getData();
     data.forEach((entry) => {
-        $(`#data-container`).append(`<div id="sensor-graph-${entry.id}-container" class="graph"><canvas id="sensor-graph-${entry.id}"></canvas></div>`);
+        $(`#data-container`).append(`<div id="sensor-graph-${entry.id}-container" class="sensor-graph-container"><canvas id="sensor-graph-${entry.id}"></canvas></div>`);
 
         createOverviewPanel(entry);
         // @ts-expect-error Property 'getContext' does not exist on type 'HTMLElement'.

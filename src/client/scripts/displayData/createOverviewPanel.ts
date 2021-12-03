@@ -3,16 +3,18 @@ import { SensorData } from '../../../global/types';
 import $ from 'jquery';
 
 export default (data: SensorData): void => {
-    $(`#overview-panel`).append(`<div id="sensor-overview-panel-${data.id}">
-        <p class="overview-panel-sensor-label">${data.name}</p>
-        <div class="overview-panel-value-code-block-container">
-            <code id="sensor-value-${data.id}">0 ${data.units}</code>
+    $(`#sensor-overview-panel-container`).append(`<div id="sensor-overview-panel-${data.id}" class="sensor-overview-panel">
+        <p id="sensor-overview-panel-${data.id}-name" class="sensor-overview-panel-name">${data.name}</p>
+        <div id="sensor-overview-panel-${data.id}-value-container" class="sensor-overview-panel-value-container">
+            <div id="sensor-overview-panel-${data.id}-value-text-container" class="sensor-overview-panel-value-text-container">
+                <code id="sensor-overview-panel-${data.id}-value-text" class="sensor-overview-panel-value-text">${Math.round(data.data[data.data.length - 1].y * 100) / 100} ${data.units}</code>
+            </div>
+            <div id="sensor-overview-panel-${data.id}-value-bar-container" class="progress-bar sensor-overview-panel-value-bar-container">
+                <span id="sensor-overview-panel-${data.id}-value-bar" style="width: ${(data.data[data.data.length - 1].y / data.max) * 100}%"></span>
+            </div>
         </div>
-        <div class="progress-bar">
-            <span id="sensor-progress-${data.id}" style="width: 0%"></span>
-        </div>
-        <div class="overview-panel-code-block-container">
-            <code id="sensor-detailed-${data.id}">
+        <div id="sensor-overview-panel-${data.id}-detail-container" class="sensor-overview-panel-detail-container">
+            <code id="sensor-overview-panel-${data.id}-detail" class="sensor-overview-panel-detail">
                 - ID: ${data.id}
                 <br>
                 - Units: ${data.units}
