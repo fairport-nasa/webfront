@@ -1,4 +1,4 @@
-import { startServer } from './comms/startServer';
+import { startServer } from './comms/server';
 
 import { config } from 'dotenv';
 
