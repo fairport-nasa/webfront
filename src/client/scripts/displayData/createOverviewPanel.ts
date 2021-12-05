@@ -1,9 +1,7 @@
 import { SensorData } from '../../../global/types';
 
-import $ from 'jquery';
-
-export default (data: SensorData): void => {
-    $(`#sensor-overview-panel-container`).append(`<div id="sensor-overview-panel-${data.id}" class="sensor-overview-panel">
+export const createOverviewPanel = (data: SensorData): void => {
+    document.getElementById(`sensor-overview-panel-container`)!.innerHTML += `<div id="sensor-overview-panel-${data.id}" class="sensor-overview-panel">
         <p id="sensor-overview-panel-${data.id}-name" class="sensor-overview-panel-name">${data.name}</p>
         <div id="sensor-overview-panel-${data.id}-value-container" class="sensor-overview-panel-value-container">
             <div id="sensor-overview-panel-${data.id}-value-text-container" class="sensor-overview-panel-value-text-container">
@@ -24,5 +22,5 @@ export default (data: SensorData): void => {
                 <br>
             </code>
         </div>
-    </div>`);
+    </div>`;
 };

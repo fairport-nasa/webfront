@@ -9,7 +9,7 @@ Chart.register(Decimation, LinearScale, LineController, LineElement, PointElemen
 /**
  * A line chart.
  */
-export default class LineChart extends Chart {
+export class LineChart extends Chart {
     /**
      * Create a line chart.
      * @param ctx The canvas context to draw the chart on.

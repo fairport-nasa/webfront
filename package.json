@@ -24,25 +24,23 @@
   "license": "MIT",
   "homepage": "https://github.com/fairport-nasa/webfront",
   "dependencies": {
-    "@influxdata/influxdb-client": "^1.20.0",
-    "chart.js": "^3.6.0",
+    "@influxdata/influxdb-client": "^1.21.0",
+    "chart.js": "^3.6.2",
     "chartjs-adapter-luxon": "^1.1.0",
     "dotenv": "^10.0.0",
-    "fastify": "^3.24.0",
+    "fastify": "^3.24.1",
     "fastify-static": "^4.5.0",
-    "jquery": "^3.6.0",
-    "luxon": "^2.0.2"
+    "luxon": "^2.1.1"
   },
   "devDependencies": {
     "@br88c/eslint-config": "^1.2.0",
-    "@types/jquery": "^3.5.8",
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0",
-    "copy-webpack-plugin": "^9.0.1",
-    "eslint": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "copy-webpack-plugin": "^10.0.0",
+    "eslint": "^8.4.0",
     "ts-loader": "^9.2.6",
-    "typescript": "^4.4.4",
-    "webpack": "^5.62.1",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1"
   },
   "engines": {

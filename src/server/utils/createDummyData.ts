@@ -7,7 +7,7 @@
  * @param minWalk The minimum y distance to travel (Can be negative or positive).
  * @param maxWalk The maximum y distance to travel (Can be negative or positive).
  */
-export default (start: number, end: number, interval: number, startY: number, minWalk: number, maxWalk: number): Array<{ x: number, y: number }> => {
+export const createDummyData = (start: number, end: number, interval: number, startY: number, minWalk: number, maxWalk: number): Array<{ x: number, y: number }> => {
     const data: Array<{ x: number, y: number }> = [];
     for (let i = start; i <= end; i += interval) {
         data.push({

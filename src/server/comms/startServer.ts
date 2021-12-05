@@ -1,12 +1,11 @@
-import Config from '../config/Config';
-import createDummyData from '../utils/createDummyData';
+import { createDummyData } from '../utils/createDummyData';
 import { RESTGetData } from '../../global/types';
 
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import { resolve } from 'path';
 
-export default async (): Promise<void> => {
+export const startServer = async (): Promise<void> => {
     const server = fastify({ logger: true });
 
     await server.register(fastifyStatic, {
@@ -27,12 +26,12 @@ export default async (): Promise<void> => {
                 data: dummyData,
                 id: `example_id_${i}`,
                 name: `Random Data ${i}`,
-                max: dummyData[dummyData.length - 1].y + 2000,
+                max: dummyData[dummyData.length - 1].y + (Math.random() * 5000),
                 units: `Unit`
             });
         }
         res.send(data);
     });
 
-    await server.listen(Config[process.env.NODE_ENV as `dev` | `prod`].port);
+    await server.listen(parseInt(process.env.WEBFRONT_PORT!));
 };

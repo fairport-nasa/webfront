@@ -6,7 +6,7 @@
     "allowUnusedLabels": false,
     "declaration": false,
     "esModuleInterop": true,
-    "lib": ["ES2021"],
+    "lib": ["ES2021", "DOM"],
     "module": "commonjs",
     "moduleResolution": "node",
     "newLine": "lf",
