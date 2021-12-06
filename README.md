@@ -17,25 +17,25 @@ Clientside code retrieves data from the server to create graphs and sensor overv
 - [x] Add dummy data creation for testing and development
 - [x] Serve sensor data via fastify
 - [x] Serve live sensor data via websocket
-- [] Serve sensor updates via websocket
-- [] Retrieve sensor data from InfluxDB and IPC instead of just dummy data
-- [] Handle sensor management requests
-- [] Handle functions management requests
-- [] Handle data management requests
-- [] Handle data download requests
-- [] Handle general options requests
+- [ ] Serve sensor updates via websocket
+- [ ] Retrieve sensor data from InfluxDB and IPC instead of just dummy data
+- [ ] Handle sensor management requests
+- [ ] Handle functions management requests
+- [ ] Handle data management requests
+- [ ] Handle data download requests
+- [ ] Handle general options requests
 
 #### Client
 - [x] Setup plotting of retrieved data
 - [x] Setup display for detailed sensor data
 - [x] Setup display for live sensor data
-- [] Loading screen
-- [] Add sensor management
-- [] Add graph management
-- [] Add functions management
-- [] Add data management
-- [] Add data download options
-- [] Add general options
+- [ ] Loading screen
+- [ ] Add sensor management
+- [ ] Add graph management
+- [ ] Add functions management
+- [ ] Add data management
+- [ ] Add data download options
+- [ ] Add general options
 
 ## Prerequisites
 - [Node.js 16.13.0 or newer](https://nodejs.org/en/)
