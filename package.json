@@ -1,0 +1,55 @@
+{
+  "name": "@fairport-nasa/webfront",
+  "version": "0.0.0",
+  "description": "Serves a webfront to gather data and configure a nanolab.",
+  "main": "./dist/server/index.js",
+  "scripts": {
+    "build": "webpack && tsc",
+    "build:ci": "npm i && npm run build",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "start": "node ./dist/server/index.js"
+  },
+  "keywords": [
+    "nasa",
+    "nanolab"
+  ],
+  "homepage": "https://github.com/fairport-nasa/webfront",
+  "bugs": {
+    "url": "https://github.com/fairport-nasa/webfront/issues"
+  },
+  "license": "MIT",
+  "contributers": [
+    "Bryce Roethel"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fairport-nasa/webfront.git"
+  },
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.21.0",
+    "chart.js": "^3.6.2",
+    "chartjs-adapter-luxon": "^1.1.0",
+    "dotenv": "^10.0.0",
+    "fastify": "^3.24.1",
+    "fastify-static": "^4.5.0",
+    "luxon": "^2.1.1",
+    "ws": "^8.3.0"
+  },
+  "devDependencies": {
+    "@br88c/eslint-config": "^1.2.0",
+    "@types/ws": "^8.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "copy-webpack-plugin": "^10.0.0",
+    "eslint": "^8.4.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  },
+  "engines": {
+    "node": ">=16.13.0",
+    "npm": ">=8.1.0"
+  }
+}
