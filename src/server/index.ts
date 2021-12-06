@@ -1,4 +1,5 @@
 import { DataController } from './comms/DataController';
+import { log } from './utils/log';
 import { startServer } from './comms/server';
 import { startSocket } from './comms/socket';
 
@@ -15,6 +16,7 @@ if (process.env.DUMMY_DATA && process.env.DUMMY_DATA !== `true` && process.env.D
 
 // Create the data controller.
 const dataController = new DataController(process.env.DUMMY_DATA === `true`);
+log(`green`, `Initialized data controller`);
 
 // Start the webfront server.
 startServer(dataController);

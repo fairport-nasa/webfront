@@ -9,8 +9,9 @@ import { WebSocketServer } from 'ws';
  * @param data The data controller to pull from.
  * @returns The created socket server.
  */
-export const startSocket = (data: DataController): WebSocketServer => {
-    const ws = new WebSocketServer({ port: process.env.SOCKET_PORT ? parseInt(process.env.SOCKET_PORT) : constants.DEFAULT_SOCKET_PORT });
+export const startSocket = async (data: DataController): Promise<WebSocketServer> => {
+    const port = process.env.SOCKET_PORT ? parseInt(process.env.SOCKET_PORT) : constants.DEFAULT_SOCKET_PORT;
+    const ws = new WebSocketServer({ port });
 
     ws.on(`connection`, (socket) => {
         log(`green`, `Socket connection opened`);
@@ -22,8 +23,16 @@ export const startSocket = (data: DataController): WebSocketServer => {
             })));
         }, process.env.LIVE_DATA_INTERVAL ? parseInt(process.env.LIVE_DATA_INTERVAL) : constants.DEFAULT_LIVE_DATA_INTERVAL);
 
-        socket.on(`close`, () => clearInterval(liveDataInterval));
+        socket.on(`close`, () => {
+            log(`red`, `Socket connection closed`);
+            clearInterval(liveDataInterval);
+        });
     });
 
-    return ws;
+    return new Promise((resolve) => {
+        ws.on(`listening`, () => {
+            log(`green`, `Socket listening on ws://127.0.0.1:${port}`);
+            resolve(ws);
+        });
+    });
 };

@@ -1,5 +1,6 @@
 import { constants } from '../../global/constants';
 import { DataController } from './DataController';
+import { log } from '../utils/log';
 
 import fastify, { FastifyInstance } from 'fastify';
 import fastifyStatic from 'fastify-static';
@@ -11,7 +12,19 @@ import { resolve } from 'path';
  * @returns The created webfront server.
  */
 export const startServer = async (data: DataController): Promise<FastifyInstance> => {
-    const server = fastify({ logger: true });
+    const port = process.env.WEBFRONT_PORT ? parseInt(process.env.WEBFRONT_PORT) : constants.DEFAULT_WEBFRONT_PORT;
+    const server = fastify();
+
+    server.addHook(`onReady`, () => log(`green`, `Webfront listening on http://127.0.0.1:${port}`));
+    server.addHook(`onRequest`, (req, res, next) => {
+        log(`cyan`, `Webfront ${req.method} ${req.url}`);
+        next();
+    });
+    server.addHook(`onResponse`, (req, res, next) => {
+        log(`white`, `Webfront successful response to ${req.method} ${req.url}`);
+        next();
+    });
+    server.addHook(`onError`, (req, res, error) => log(`red`, `Webfront error code ${error.code} "${error.message}" on ${req.method} ${req.url}`));
 
     await server.register(fastifyStatic, {
         prefix: `/`,
@@ -24,7 +37,7 @@ export const startServer = async (data: DataController): Promise<FastifyInstance
 
     server.get(`/data`, (req, res) => void res.send(data.sensors));
 
-    await server.listen(process.env.WEBFRONT_PORT ? parseInt(process.env.WEBFRONT_PORT) : constants.DEFAULT_WEBFRONT_PORT);
+    await server.listen(port);
 
     return server;
 };
