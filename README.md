@@ -12,7 +12,7 @@ Serverside code consists of 3 main controllers; the DataController, the [fastify
 Clientside code retrieves data from the server to create graphs and sensor overview panels. Additionally, 
 
 ## API
-Useful if you wish to build your own client, or otherwise interface with the server.
+Useful you wish to build your own client, or otherwise interface with the server.
 
 ### REST
 
