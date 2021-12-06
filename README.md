@@ -9,10 +9,10 @@ The webfront is made using [TypeScript](https://www.typescriptlang.org/), which 
 Serverside code consists of 3 main controllers; the DataController, the [fastify](https://www.fastify.io/) server, and the websocket. Fastify serves the webfront, as well as REST routes for the client to fetch data from. The websocket (using an implementation of [ws](https://github.com/websockets/ws)) gives the client live sensor data, as well as updates to sensor properties. The DataController is used by both the webfront and socket, and acts as a middleware between the communication controllers and InfluxDB / the IPC to the python hardware controller.
 
 ### Client
-Clientside code retrieves data from the server to create graphs and sensor overview panels. Additionally, 
+Clientside code retrieves data from the server to create graphs and sensor overview panels. Additionally, it provides configuration options to allow the user to control data collection and display, functions, etc.
 
 ## API
-Useful you wish to build your own client, or otherwise interface with the server.
+Useful if you wish to build your own client, or otherwise interface with the server.
 
 ### REST
 
