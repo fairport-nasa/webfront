@@ -1,7 +1,7 @@
 # @fairport-nasa/webfront
 Creates a website that allows NanoLab experimenters to view and retrieve sensor data, create experiments with custom functions, and otherwise easily manipulate the NanoLab hardware. This repository serves data from the hardware controller, retrieved via InfluxDB or IPC, to the webclient. In production, this code would be hosted on the NanoLab's Raspberry Pi, and would be accessible via a Wi-Fi hotspot.
 
-The webfront is made using [TypeScript](https://www.typescriptlang.org/), which is compiled into [https://www.javascript.com/](JavaScript). JavaScript is used at runtime, and has a JIT compiler. The server runs JavaScript using [Node.js](https://nodejs.org/en/), a JavaScript runtime built on [Google's V8 engine](https://v8.dev/). The client's browser has a built-in JavaScript engine.
+The webfront is made using [TypeScript](https://www.typescriptlang.org/), which is compiled into [JavaScript](https://www.javascript.com/). JavaScript is used at runtime, and has a JIT compiler. The server runs JavaScript using [Node.js](https://nodejs.org/en/), a JavaScript runtime built on [Google's V8 engine](https://v8.dev/). The client's browser has a built-in JavaScript engine.
 
 ## How it works
 
