@@ -1,11 +1,16 @@
-import { createDummyData } from '../utils/createDummyData';
-import { RESTGetData } from '../../global/types';
+import { constants } from '../../global/constants';
+import { DataController } from './DataController';
 
-import fastify from 'fastify';
+import fastify, { FastifyInstance } from 'fastify';
 import fastifyStatic from 'fastify-static';
 import { resolve } from 'path';
 
-export const startServer = async (): Promise<void> => {
+/**
+ * Starts the webfront server.
+ * @param data The data controller to pull from.
+ * @returns The created webfront server.
+ */
+export const startServer = async (data: DataController): Promise<FastifyInstance> => {
     const server = fastify({ logger: true });
 
     await server.register(fastifyStatic, {
@@ -17,21 +22,9 @@ export const startServer = async (): Promise<void> => {
         return reply.sendFile(`index.html`) as any;
     });
 
-    server.get(`/data`, (req, res) => {
-        const data: RESTGetData = [];
-        for (let i = 1; i <= 6; i++) {
-            const dummyData = createDummyData(Date.now() - 30 * 86400 * 1e3, Date.now(), 5000, 750, -2.99, 3);
-            data.push({
-                color: `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`,
-                data: dummyData,
-                id: `example_id_${i}`,
-                name: `Random Data ${i}`,
-                max: dummyData[dummyData.length - 1].y + (Math.random() * 5000),
-                units: `Unit`
-            });
-        }
-        res.send(data);
-    });
+    server.get(`/data`, (req, res) => void res.send(data.sensors));
 
-    await server.listen(parseInt(process.env.WEBFRONT_PORT!));
+    await server.listen(process.env.WEBFRONT_PORT ? parseInt(process.env.WEBFRONT_PORT) : constants.DEFAULT_WEBFRONT_PORT);
+
+    return server;
 };

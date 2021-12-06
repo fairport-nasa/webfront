@@ -29,11 +29,36 @@ export interface SensorData {
 }
 
 /**
+ * Live sensor data.
+ */
+export interface LiveSensorData {
+    /**
+     * The sensor's ID.
+     */
+    id: string
+    /**
+     * The sensor's current value.
+     */
+    v: number
+}
+
+/**
  * The payload sent from /data
  */
 export type RESTGetData = SensorData[];
 
 /**
+ * The payload for live sensor data sent via the websocket.
+ */
+export type SocketLiveSensorData = {
+    op: 0
+    d: LiveSensorData
+};
+
+/**
  * The payload for a sensor update sent via the websocket.
  */
-export type SocketSensorUpdate = Partial<SensorData> & { id: string };
+export type SocketSensorUpdate = {
+    op: 1
+    d: Partial<SensorData> & { id: string }
+};
