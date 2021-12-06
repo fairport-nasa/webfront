@@ -40,7 +40,7 @@ Clientside code retrieves data from the server to create graphs and sensor overv
 ## Prerequisites
 - [Node.js 16.13.0 or newer](https://nodejs.org/en/)
 - [NPM 8.1.0 or newer](https://www.npmjs.com/)
-- [InfluxDB](https://www.influxdata.com/)
+- [InfluxDB 2.x](https://www.influxdata.com/)
 
 ## Running
 Clone from the [build](https://github.com/fairport-nasa/webfront/tree/build) branch.
