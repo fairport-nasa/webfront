@@ -65,7 +65,7 @@ Payloads use the following format:
 }
 ```
 
-#### Op code `0`
+#### Live Sensor Data
 An op code of `0` is Live Sensor Data.
 ```ts
 {
@@ -83,7 +83,7 @@ An op code of `0` is Live Sensor Data.
 }
 ```
 
-#### Op code `1`
+#### Sensor Update
 An op code of `1` is a Sensor Update.
 ```ts
 {
