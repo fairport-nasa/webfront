@@ -12,6 +12,7 @@ exports.constants = {
         cyan: `\x1b[36m`,
         white: `\x1b[37m`
     },
+    DEFAULT_DUMMY_DATA: false,
     DEFAULT_LIVE_DATA_INTERVAL: 100,
     DEFAULT_SOCKET_PORT: 4000,
     DEFAULT_WEBFRONT_PORT: 8080,
