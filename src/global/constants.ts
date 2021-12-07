@@ -16,6 +16,10 @@ export const constants = {
         white: `\x1b[37m`
     },
     /**
+     * The default dummy data boolean.
+     */
+    DEFAULT_DUMMY_DATA: false,
+    /**
      * The default live data interval.
      */
     DEFAULT_LIVE_DATA_INTERVAL: 100,
