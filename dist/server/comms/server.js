@@ -12,16 +12,16 @@ const path_1 = require("path");
 const startServer = async (data) => {
     const port = process.env.WEBFRONT_PORT ? parseInt(process.env.WEBFRONT_PORT) : constants_1.constants.DEFAULT_WEBFRONT_PORT;
     const server = (0, fastify_1.default)();
-    server.addHook(`onReady`, () => (0, log_1.log)(`green`, `Webfront listening on http://127.0.0.1:${port}`));
+    server.addHook(`onReady`, () => (0, log_1.log)(`green`, `INFO`, `Webfront listening on http://127.0.0.1:${port}`));
     server.addHook(`onRequest`, (req, res, next) => {
-        (0, log_1.log)(`cyan`, `Webfront ${req.method} ${req.url}`);
+        (0, log_1.log)(`cyan`, `INFO`, `Webfront ${req.method} ${req.url}`);
         next();
     });
     server.addHook(`onResponse`, (req, res, next) => {
-        (0, log_1.log)(`white`, `Webfront successful response to ${req.method} ${req.url}`);
+        (0, log_1.log)(`white`, `INFO`, `Webfront successful response to ${req.method} ${req.url}`);
         next();
     });
-    server.addHook(`onError`, (req, res, error) => (0, log_1.log)(`red`, `Webfront error code ${error.code} "${error.message}" on ${req.method} ${req.url}`));
+    server.addHook(`onError`, (req, res, error) => (0, log_1.log)(`red`, `ERROR`, `Webfront error code ${error.code} "${error.message}" on ${req.method} ${req.url}`));
     await server.register(fastify_static_1.default, {
         prefix: `/`,
         root: (0, path_1.resolve)(__dirname, `../../client/public`)

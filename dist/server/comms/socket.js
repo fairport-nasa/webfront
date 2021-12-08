@@ -8,7 +8,7 @@ const startSocket = async (data) => {
     const port = process.env.SOCKET_PORT ? parseInt(process.env.SOCKET_PORT) : constants_1.constants.DEFAULT_SOCKET_PORT;
     const ws = new ws_1.WebSocketServer({ port });
     ws.on(`connection`, (socket) => {
-        (0, log_1.log)(`green`, `Socket connection opened`);
+        (0, log_1.log)(`green`, `INFO`, `Socket connection opened`);
         const liveDataInterval = setInterval(() => {
             data.liveSensors.forEach((sensor) => socket.send(JSON.stringify({
                 op: 0,
@@ -16,13 +16,13 @@ const startSocket = async (data) => {
             })));
         }, process.env.LIVE_DATA_INTERVAL ? parseInt(process.env.LIVE_DATA_INTERVAL) : constants_1.constants.DEFAULT_LIVE_DATA_INTERVAL);
         socket.on(`close`, () => {
-            (0, log_1.log)(`red`, `Socket connection closed`);
+            (0, log_1.log)(`red`, `INFO`, `Socket connection closed`);
             clearInterval(liveDataInterval);
         });
     });
     return new Promise((resolve) => {
         ws.on(`listening`, () => {
-            (0, log_1.log)(`green`, `Socket listening on ws://127.0.0.1:${port}`);
+            (0, log_1.log)(`green`, `INFO`, `Socket listening on ws://127.0.0.1:${port}`);
             resolve(ws);
         });
     });
