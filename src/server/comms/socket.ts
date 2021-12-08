@@ -14,7 +14,7 @@ export const startSocket = async (data: DataController): Promise<WebSocketServer
     const ws = new WebSocketServer({ port });
 
     ws.on(`connection`, (socket) => {
-        log(`green`, `Socket connection opened`);
+        log(`green`, `INFO`, `Socket connection opened`);
 
         const liveDataInterval = setInterval(() => {
             data.liveSensors.forEach((sensor) => socket.send(JSON.stringify({
@@ -24,14 +24,14 @@ export const startSocket = async (data: DataController): Promise<WebSocketServer
         }, process.env.LIVE_DATA_INTERVAL ? parseInt(process.env.LIVE_DATA_INTERVAL) : constants.DEFAULT_LIVE_DATA_INTERVAL);
 
         socket.on(`close`, () => {
-            log(`red`, `Socket connection closed`);
+            log(`red`, `INFO`, `Socket connection closed`);
             clearInterval(liveDataInterval);
         });
     });
 
     return new Promise((resolve) => {
         ws.on(`listening`, () => {
-            log(`green`, `Socket listening on ws://127.0.0.1:${port}`);
+            log(`green`, `INFO`, `Socket listening on ws://127.0.0.1:${port}`);
             resolve(ws);
         });
     });

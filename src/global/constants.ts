@@ -52,5 +52,13 @@ export const constants = {
         maxAdditional: 7500,
         liveDataMinAdd: -400,
         liveDataMaxAdd: 400
+    },
+    /**
+     * Log types.
+     */
+    LOG_TYPES: {
+        ERROR: `\x1b[31m`,
+        INFO: `\x1b[36m`,
+        WARN: `\x1b[33m`
     }
 } as const;

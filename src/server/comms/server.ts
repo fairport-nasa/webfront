@@ -15,16 +15,16 @@ export const startServer = async (data: DataController): Promise<FastifyInstance
     const port = process.env.WEBFRONT_PORT ? parseInt(process.env.WEBFRONT_PORT) : constants.DEFAULT_WEBFRONT_PORT;
     const server = fastify();
 
-    server.addHook(`onReady`, () => log(`green`, `Webfront listening on http://127.0.0.1:${port}`));
+    server.addHook(`onReady`, () => log(`green`, `INFO`, `Webfront listening on http://127.0.0.1:${port}`));
     server.addHook(`onRequest`, (req, res, next) => {
-        log(`cyan`, `Webfront ${req.method} ${req.url}`);
+        log(`cyan`, `INFO`, `Webfront ${req.method} ${req.url}`);
         next();
     });
     server.addHook(`onResponse`, (req, res, next) => {
-        log(`white`, `Webfront successful response to ${req.method} ${req.url}`);
+        log(`white`, `INFO`, `Webfront successful response to ${req.method} ${req.url}`);
         next();
     });
-    server.addHook(`onError`, (req, res, error) => log(`red`, `Webfront error code ${error.code} "${error.message}" on ${req.method} ${req.url}`));
+    server.addHook(`onError`, (req, res, error) => log(`red`, `ERROR`, `Webfront error code ${error.code} "${error.message}" on ${req.method} ${req.url}`));
 
     await server.register(fastifyStatic, {
         prefix: `/`,
