@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateLiveDummyData = exports.createLiveDummyData = exports.createDummyData = void 0;
 const createDummyData = (sensorCount, start, end, interval, startY, minWalk, maxWalk, minAdditional, maxAdditional) => {
-    const sensorData = [];
+    const daSensorData = [];
     for (let i = 0; i < sensorCount; i++) {
         const data = [];
         for (let d = start; d <= end; d += interval) {
@@ -11,8 +11,9 @@ const createDummyData = (sensorCount, start, end, interval, startY, minWalk, max
                 y: Math.max((data[data.length - 1]?.y ?? startY) + ((Math.random() * (maxWalk - minWalk)) + minWalk), 0)
             });
         }
-        sensorData.push({
+        daSensorData.push({
             color: `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`,
+            connected: true,
             data,
             id: `example_id_${i}`,
             name: `Random Data ${i}`,
@@ -20,7 +21,7 @@ const createDummyData = (sensorCount, start, end, interval, startY, minWalk, max
             units: `Unit`
         });
     }
-    return sensorData;
+    return daSensorData;
 };
 exports.createDummyData = createDummyData;
 const createLiveDummyData = (sensorData, liveDataMinAdd, liveDataMaxAdd) => {

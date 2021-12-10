@@ -9,10 +9,10 @@ const log_1 = require("../utils/log");
 const fastify_1 = __importDefault(require("fastify"));
 const fastify_static_1 = __importDefault(require("fastify-static"));
 const path_1 = require("path");
-const startServer = async (data) => {
+const startServer = async (data, config) => {
     const port = process.env.WEBFRONT_PORT ? parseInt(process.env.WEBFRONT_PORT) : constants_1.constants.DEFAULT_WEBFRONT_PORT;
     const server = (0, fastify_1.default)();
-    server.addHook(`onReady`, () => (0, log_1.log)(`green`, `INFO`, `Webfront listening on http://127.0.0.1:${port}`));
+    server.addHook(`onReady`, () => (0, log_1.log)(`green`, `INFO`, `Webfront listening on http://${constants_1.constants.HOST}:${port}`));
     server.addHook(`onRequest`, (req, res, next) => {
         (0, log_1.log)(`cyan`, `INFO`, `Webfront ${req.method} ${req.url}`);
         next();
@@ -30,7 +30,8 @@ const startServer = async (data) => {
         return reply.sendFile(`index.html`);
     });
     server.get(`/data`, (req, res) => void res.send(data.sensors));
-    await server.listen(port);
+    server.get(`/functions`, (req, res) => void res.send(config));
+    await server.listen(port, constants_1.constants.HOST);
     return server;
 };
 exports.startServer = startServer;

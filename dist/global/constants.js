@@ -29,6 +29,7 @@ exports.constants = {
         liveDataMinAdd: -400,
         liveDataMaxAdd: 400
     },
+    HOST: `0.0.0.0`,
     LOG_TYPES: {
         ERROR: `\x1b[31m`,
         INFO: `\x1b[36m`,
