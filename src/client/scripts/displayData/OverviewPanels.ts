@@ -1,4 +1,5 @@
-import { SensorData, SocketLiveSensorData } from '../../../global/types';
+import { SensorData } from '../../../global/types/sensors';
+import { SocketSensorDataLiveUpdate } from '../../../global/types/api';
 
 /**
  * A class with static methods for creating and modifying sensor overview panels.
@@ -24,6 +25,8 @@ export class OverviewPanels {
             <code id="sensor-overview-panel-${data.id}-detail" class="sensor-overview-panel-detail">
                 - ID: ${data.id}
                 <br>
+                - Connected: ${data.connected}
+                <br>
                 - Units: ${data.units}
                 <br>
                 - Data Points: ${data.data.length}
@@ -37,11 +40,11 @@ export class OverviewPanels {
 
     /**
      * Edits a sensor's value in the overview panel.
-     * Meant to be used with the Socket Live Sensor Data payload (op code 0).
+     * Meant to be used with the Socket Live Sensor Data payload (op code 1).
      * @param data Data sent from the socket.
      * @param sensorData The sensor's information.
      */
-    public static editLiveData = (data: SocketLiveSensorData[`d`], sensorData: SensorData): void => {
+    public static editLiveData = (data: SocketSensorDataLiveUpdate[`d`], sensorData: SensorData): void => {
         document.getElementById(`sensor-overview-panel-${data.id}-value-text`)!.innerText = `${Math.round(data.v * 100) / 100} ${sensorData.units}`;
         document.getElementById(`sensor-overview-panel-${data.id}-value-bar`)!.style.width = `${(data.v / sensorData.max) * 100}%`;
     };
@@ -64,6 +67,8 @@ export class OverviewPanels {
         <div id="sensor-overview-panel-${data.id}-detail-container" class="sensor-overview-panel-detail-container">
             <code id="sensor-overview-panel-${data.id}-detail" class="sensor-overview-panel-detail">
                 - ID: ${data.id}
+                <br>
+                - Connected: ${data.connected}
                 <br>
                 - Units: ${data.units}
                 <br>

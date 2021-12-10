@@ -1,5 +1,5 @@
 import { constants } from '../../global/constants';
-import { DataController } from './DataController';
+import { DataController } from '../controllers/DataController';
 import { log } from '../utils/log';
 
 import { WebSocketServer } from 'ws';
@@ -11,14 +11,17 @@ import { WebSocketServer } from 'ws';
  */
 export const startSocket = async (data: DataController): Promise<WebSocketServer> => {
     const port = process.env.SOCKET_PORT ? parseInt(process.env.SOCKET_PORT) : constants.DEFAULT_SOCKET_PORT;
-    const ws = new WebSocketServer({ port });
+    const ws = new WebSocketServer({
+        host: constants.HOST,
+        port
+    });
 
     ws.on(`connection`, (socket) => {
         log(`green`, `INFO`, `Socket connection opened`);
 
         const liveDataInterval = setInterval(() => {
             data.liveSensors.forEach((sensor) => socket.send(JSON.stringify({
-                op: 0,
+                op: 1,
                 d: sensor
             })));
         }, process.env.LIVE_DATA_INTERVAL ? parseInt(process.env.LIVE_DATA_INTERVAL) : constants.DEFAULT_LIVE_DATA_INTERVAL);
@@ -31,7 +34,7 @@ export const startSocket = async (data: DataController): Promise<WebSocketServer
 
     return new Promise((resolve) => {
         ws.on(`listening`, () => {
-            log(`green`, `INFO`, `Socket listening on ws://127.0.0.1:${port}`);
+            log(`green`, `INFO`, `Socket listening on ws://${constants.HOST}:${port}`);
             resolve(ws);
         });
     });

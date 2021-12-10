@@ -1,13 +1,13 @@
 import { constants } from '../../../global/constants';
 import { OverviewPanels } from '../displayData/OverviewPanels';
-import { RESTGetData } from '../../../global/types';
+import { RESTGetDataResult } from '../../../global/types/api';
 
 /**
  * Start the websocket connection to the server, and handle incoming events.
  * @param sensorData Fetched sensor data.
  * @returns The created socket.
  */
-export const startSocket = (sensorData: RESTGetData): WebSocket => {
+export const startSocket = (sensorData: RESTGetDataResult): WebSocket => {
     const ws = new WebSocket(`ws://${window.location.hostname}:${constants.DEFAULT_SOCKET_PORT}`);
 
     ws.addEventListener(`open`, () => console.log(`Socket connection opened`));
@@ -19,14 +19,14 @@ export const startSocket = (sensorData: RESTGetData): WebSocket => {
         const sensorIndex = sensorData.findIndex((sensor) => sensor.id === data.d.id);
         if (!sensorData[sensorIndex]) return;
 
-        if (data.op === 0) OverviewPanels.editLiveData(data.d, sensorData[sensorIndex]);
-        if (data.op === 1) {
+        if (data.op === 0) {
             sensorData[sensorIndex] = {
                 ...sensorData[sensorIndex],
                 ...data.d
             };
             OverviewPanels.editSensorData(sensorData[sensorIndex]);
         }
+        if (data.op === 1) OverviewPanels.editLiveData(data.d, sensorData[sensorIndex]);
     });
 
     return ws;

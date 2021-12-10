@@ -7,9 +7,22 @@ export interface SensorData {
      */
     color: string
     /**
+     * If the sensor is currently connected.
+     */
+    connected: boolean
+    /**
      * The data from the sensor.
      */
-    data: Array<{ x: number, y: number }>
+    data: Array<{
+        /**
+         * The current time, represented as a Unix timestamp in milliseconds.
+         */
+        x: number
+        /**
+         * The sensor's value.
+         */
+        y: number
+    }>
     /**
      * The sensor's ID.
      */
@@ -31,7 +44,7 @@ export interface SensorData {
 /**
  * Live sensor data.
  */
-export interface LiveSensorData {
+export interface SensorDataLive {
     /**
      * The sensor's ID.
      */
@@ -41,24 +54,3 @@ export interface LiveSensorData {
      */
     v: number
 }
-
-/**
- * The payload sent from /data
- */
-export type RESTGetData = SensorData[];
-
-/**
- * The payload for live sensor data sent via the websocket.
- */
-export type SocketLiveSensorData = {
-    op: 0
-    d: LiveSensorData
-};
-
-/**
- * The payload for a sensor update sent via the websocket.
- */
-export type SocketSensorUpdate = {
-    op: 1
-    d: Partial<SensorData> & { id: string }
-};

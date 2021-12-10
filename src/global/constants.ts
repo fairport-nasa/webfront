@@ -54,6 +54,10 @@ export const constants = {
         liveDataMaxAdd: 400
     },
     /**
+     * The host to use for fastify and ws.
+     */
+    HOST: `0.0.0.0`,
+    /**
      * Log types.
      */
     LOG_TYPES: {

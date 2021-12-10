@@ -1,6 +1,6 @@
 import { LineChart } from '../displayData/LineChart';
 import { OverviewPanels } from './OverviewPanels';
-import { SensorData } from '../../../global/types';
+import { SensorData } from '../../../global/types/sensors';
 import { waitForAppend } from '../utils/waitForAppend';
 
 /**

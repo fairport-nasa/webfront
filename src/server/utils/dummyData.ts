@@ -1,4 +1,5 @@
-import { LiveSensorData, SensorData } from '../../global/types';
+import { SensorData, SensorDataLive } from '../../global/types/sensors';
+
 
 /**
  * Creates dummy sensor data.
@@ -13,7 +14,7 @@ import { LiveSensorData, SensorData } from '../../global/types';
  * @param maxAdditional The maximum amount to add to the maximum value of the dataset to define as the sensor's maximum value.
  */
 export const createDummyData = (sensorCount: number, start: number, end: number, interval: number, startY: number, minWalk: number, maxWalk: number, minAdditional: number, maxAdditional: number): SensorData[] => {
-    const sensorData: SensorData[] = [];
+    const daSensorData: SensorData[] = [];
 
     for (let i = 0; i < sensorCount; i++) {
         const data: Array<{ x: number, y: number }> = [];
@@ -24,8 +25,9 @@ export const createDummyData = (sensorCount: number, start: number, end: number,
             });
         }
 
-        sensorData.push({
+        daSensorData.push({
             color: `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`,
+            connected: true,
             data,
             id: `example_id_${i}`,
             name: `Random Data ${i}`,
@@ -34,7 +36,7 @@ export const createDummyData = (sensorCount: number, start: number, end: number,
         });
     }
 
-    return sensorData;
+    return daSensorData;
 };
 
 /**
@@ -43,7 +45,7 @@ export const createDummyData = (sensorCount: number, start: number, end: number,
  * @param liveDataMinAdd The minimum value to add to the last sensor value (Can be negative or positive).
  * @param liveDataMaxAdd The maximum value to add to the last sensor value (Can be negative or positive).
  */
-export const createLiveDummyData = (sensorData: SensorData[], liveDataMinAdd: number, liveDataMaxAdd: number): LiveSensorData[] => {
+export const createLiveDummyData = (sensorData: SensorData[], liveDataMinAdd: number, liveDataMaxAdd: number): SensorDataLive[] => {
     return sensorData.map((sensor) => ({
         id: sensor.id,
         v: Math.min(Math.max(sensor.data[sensor.data.length - 1].y + (Math.random() * (liveDataMaxAdd - liveDataMinAdd)) + liveDataMinAdd, 0), sensor.max)
@@ -58,7 +60,7 @@ export const createLiveDummyData = (sensorData: SensorData[], liveDataMinAdd: nu
  * @param liveDataMaxAdd The maximum value to add to the last sensor value (Can be negative or positive).
  * @returns 
  */
-export const updateLiveDummyData = (sensorData: SensorData[], liveSensorData: LiveSensorData[], liveDataMinAdd: number, liveDataMaxAdd: number): LiveSensorData[] => {
+export const updateLiveDummyData = (sensorData: SensorData[], liveSensorData: SensorDataLive[], liveDataMinAdd: number, liveDataMaxAdd: number): SensorDataLive[] => {
     return sensorData.map((sensor, i) => ({
         id: sensor.id,
         v: Math.min(Math.max(liveSensorData[i].v + (Math.random() * (liveDataMaxAdd - liveDataMinAdd)) + liveDataMinAdd, 0), sensor.max)

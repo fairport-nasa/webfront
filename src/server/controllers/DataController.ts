@@ -1,6 +1,6 @@
 import { constants } from '../../global/constants';
 import { createDummyData, createLiveDummyData, updateLiveDummyData } from '../utils/dummyData';
-import { LiveSensorData, SensorData } from '../../global/types';
+import { SensorData, SensorDataLive } from '../../global/types/sensors';
 
 /**
  * The data controller.
@@ -15,7 +15,7 @@ export class DataController {
      * Dummy live sensor data used if dummy is set to `true` when initializing the DataController.
      * This is the last sent payload. Used for making dummy live data look smooth.
      */
-    private _dummyLive?: LiveSensorData[];
+    private _dummyLive?: SensorDataLive[];
 
     /**
      * Create a data controller.
@@ -61,7 +61,7 @@ export class DataController {
      * Live sensor data.
      * Retreived from the python IPC or from dummy data.
      */
-    public get liveSensors(): LiveSensorData[] {
+    public get liveSensors(): SensorDataLive[] {
         if (this._dummy && this._dummyLive) {
             this._dummyLive = updateLiveDummyData(this._dummy, this._dummyLive, constants.DUMMY_DATA_VALUES.liveDataMaxAdd, constants.DUMMY_DATA_VALUES.liveDataMinAdd);
             return this._dummyLive;

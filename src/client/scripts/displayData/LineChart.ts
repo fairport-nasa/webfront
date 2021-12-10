@@ -1,4 +1,4 @@
-import { SensorData } from '../../../global/types';
+import { SensorData } from '../../../global/types/sensors';
 
 import { Chart, Decimation, LineController, PointElement, LineElement, LinearScale, TimeScale, Title, Tooltip } from 'chart.js';
 import 'chartjs-adapter-luxon';
