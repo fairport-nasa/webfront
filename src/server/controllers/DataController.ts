@@ -63,7 +63,7 @@ export class DataController {
         if (this._dummy) return this._dummy;
         else {
 	    const result = await influx.query("select value from proximity");
-            return [];
+            return result;
         }
     }
 
