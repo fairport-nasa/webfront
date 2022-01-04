@@ -1,5 +1,4 @@
 import { constants } from '../../global/constants';
-
 import { createDummyData, createLiveDummyData, updateLiveDummyData } from '../utils/dummyData';
 import { SensorData, SensorDataLive } from '../../global/types/sensors';
 
@@ -38,19 +37,8 @@ export class DataController {
 
             this._dummyLive = createLiveDummyData(this._dummy, constants.DUMMY_DATA_VALUES.liveDataMaxAdd, constants.DUMMY_DATA_VALUES.liveDataMinAdd);
         } else {
-	    const Influx = require('infux');
-	    const influx = Influx.InfluxDB({
-		    host: "localhost",
-		    database: "sensors",
-		    shema: [
-			    meausement: Influx.FieldType.STRING,
-			    fields: {
-				    value: Influx.FieldType.FLOAT
-			    }
-		    ]
-	    });
             /**
-             * @todo Setup IPC to retrieve data.
+             * @todo Setup InfluxDB and IPC to retrieve data.
              */
         }
     }
@@ -62,7 +50,9 @@ export class DataController {
     public get sensors(): SensorData[] {
         if (this._dummy) return this._dummy;
         else {
-	    const result = await influx.query("select value from proximity");
+            /**
+             * @todo Fetch data from InfluxDB.
+             */
             return [];
         }
     }
