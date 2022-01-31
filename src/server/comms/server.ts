@@ -17,28 +17,28 @@ export const startServer = async (data: DataController, config: ConfigController
     const server = fastify();
 
     server.addHook(`onReady`, () => log(`green`, `INFO`, `Webfront listening on http://${constants.HOST}:${port}`));
-    server.addHook(`onRequest`, (req, res, next) => {
+    server.addHook(`onRequest`, (req, _, next) => {
         log(`cyan`, `INFO`, `Webfront ${req.method} ${req.url}`);
         next();
     });
-    server.addHook(`onResponse`, (req, res, next) => {
+    server.addHook(`onResponse`, (req, _, next) => {
         log(`white`, `INFO`, `Webfront successful response to ${req.method} ${req.url}`);
         next();
     });
-    server.addHook(`onError`, (req, res, error) => log(`red`, `ERROR`, `Webfront error code ${error.code} "${error.message}" on ${req.method} ${req.url}`));
+    server.addHook(`onError`, (req, _, error) => log(`red`, `ERROR`, `Webfront error code ${error.code} "${error.message}" on ${req.method} ${req.url}`));
 
     await server.register(fastifyStatic, {
         prefix: `/`,
         root: resolve(__dirname, `../../client/public`)
     });
 
-    server.get(`/`, (req, reply) => {
+    server.get(`/`, (_, reply) => {
         return reply.sendFile(`index.html`) as any;
     });
 
-    server.get(`/data`, (req, res) => void res.send(data.sensors));
+    server.get(`/data`, (_, res) => void res.send(data.sensors));
 
-    server.get(`/functions`, (req, res) => void res.send(config));
+    server.get(`/functions`, (_, res) => void res.send(config));
 
     await server.listen(port, constants.HOST);
 

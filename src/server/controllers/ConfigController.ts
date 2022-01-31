@@ -9,11 +9,4 @@ export class ConfigController {
      * The path to the configuration file.
      */
     public readonly FILE_PATH: string = resolve(__dirname, `../../../config.json`);
-
-    /**
-     * Create a config controller.
-     */
-    constructor() {
-
-    }
 }

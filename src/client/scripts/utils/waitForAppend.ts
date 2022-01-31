@@ -6,7 +6,7 @@
 export const waitForAppend = (id: string, parentId?: string): Promise<void> => {
     return new Promise((resolve) => {
         if (document.getElementById(id)) return resolve();
-        new MutationObserver((mutations, obs) => {
+        new MutationObserver((_, obs) => {
             if (document.getElementById(id)) {
                 obs.disconnect(); // stop observing
                 resolve();

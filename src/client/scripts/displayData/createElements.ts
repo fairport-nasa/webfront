@@ -8,7 +8,7 @@ import { waitForAppend } from '../utils/waitForAppend';
  * @param data Sensor data.
  */
 export const createElements = async (data: SensorData[]): Promise<void> => {
-    const initElements: Promise<void>[] = [];
+    const initElements: Array<Promise<void>> = [];
     data.forEach((entry) => {
         initElements.push(new Promise((resolve) => {
             document.getElementById(`data-container`)!.innerHTML += `<div id="sensor-graph-${entry.id}-container" class="sensor-graph-container"><canvas id="sensor-graph-${entry.id}"></canvas></div>`;

@@ -58,7 +58,6 @@ export const createLiveDummyData = (sensorData: SensorData[], liveDataMinAdd: nu
  * @param liveSensorData The current live data.
  * @param liveDataMinAdd The minimum value to add to the last sensor value (Can be negative or positive).
  * @param liveDataMaxAdd The maximum value to add to the last sensor value (Can be negative or positive).
- * @returns 
  */
 export const updateLiveDummyData = (sensorData: SensorData[], liveSensorData: SensorDataLive[], liveDataMinAdd: number, liveDataMaxAdd: number): SensorDataLive[] => {
     return sensorData.map((sensor, i) => ({

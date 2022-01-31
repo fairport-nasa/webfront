@@ -13,9 +13,9 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "dist",
     "removeComments": true,
-    "skipLibCheck": true,
     "strict": true,
     "target": "ES2021"
   }

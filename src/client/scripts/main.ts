@@ -2,7 +2,7 @@ import { createElements } from './displayData/createElements';
 import { getData } from './comms/getData';
 import { startSocket } from './comms/socket';
 
-(async () => {
+(async (): Promise<void> => {
     const data = await getData();
     console.log(`Fetched data`);
 

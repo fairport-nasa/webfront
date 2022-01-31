@@ -32,7 +32,7 @@ export const startSocket = async (data: DataController): Promise<WebSocketServer
         });
     });
 
-    return new Promise((resolve) => {
+    return await new Promise((resolve) => {
         ws.on(`listening`, () => {
             log(`green`, `INFO`, `Socket listening on ws://${constants.HOST}:${port}`);
             resolve(ws);
