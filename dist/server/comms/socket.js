@@ -23,7 +23,7 @@ const startSocket = async (data) => {
             clearInterval(liveDataInterval);
         });
     });
-    return new Promise((resolve) => {
+    return await new Promise((resolve) => {
         ws.on(`listening`, () => {
             (0, log_1.log)(`green`, `INFO`, `Socket listening on ws://${constants_1.constants.HOST}:${port}`);
             resolve(ws);
