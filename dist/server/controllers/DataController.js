@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataController = void 0;
 const constants_1 = require("../../global/constants");
 const dummyData_1 = require("../utils/dummyData");
+const influxdb_client_1 = require("@influxdata/influxdb-client");
 class DataController {
     constructor(dummy) {
         if (dummy) {
@@ -10,12 +11,14 @@ class DataController {
             this._dummyLive = (0, dummyData_1.createLiveDummyData)(this._dummy, constants_1.constants.DUMMY_DATA_VALUES.liveDataMaxAdd, constants_1.constants.DUMMY_DATA_VALUES.liveDataMinAdd);
         }
         else {
+            this.influx = new influxdb_client_1.InfluxDB({ url: process.env.INFLUX_URL ?? constants_1.constants.DEFAULT_INFLUX_URL });
         }
     }
     get sensors() {
         if (this._dummy)
             return this._dummy;
         else {
+            this.influx.getQueryApi(process.env.INFLUX_ORG ?? constants_1.constants.DEFAULT_INFLUX_ORG).queryRaw(`select value from proximity`);
             return [];
         }
     }
