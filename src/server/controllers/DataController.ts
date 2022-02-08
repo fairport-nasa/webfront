@@ -55,7 +55,7 @@ export class DataController {
     public get sensors(): SensorData[] {
         if (this._dummy) return this._dummy;
         else {
-            this.influx!.getQueryApi(process.env.INFLUX_ORG ?? constants.DEFAULT_INFLUX_ORG).queryRaw(`select value from proximity`);
+            this.influx!.getQueryApi(process.env.INFLUX_ORG ?? constants.DEFAULT_INFLUX_ORG).queryRaw(`select value from proximity`).then(console.log);
             return [];
         }
     }
