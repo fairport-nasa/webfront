@@ -18,7 +18,7 @@ class DataController {
         if (this._dummy)
             return this._dummy;
         else {
-            this.influx.getQueryApi(process.env.INFLUX_ORG ?? constants_1.constants.DEFAULT_INFLUX_ORG).queryRaw(`select value from proximity`);
+            this.influx.getQueryApi(process.env.INFLUX_ORG ?? constants_1.constants.DEFAULT_INFLUX_ORG).queryRaw(`select value from proximity`).then(console.log);
             return [];
         }
     }
