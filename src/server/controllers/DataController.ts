@@ -2,11 +2,18 @@ import { constants } from '../../global/constants';
 import { createDummyData, createLiveDummyData, updateLiveDummyData } from '../utils/dummyData';
 import { SensorData, SensorDataLive } from '../../global/types/sensors';
 
+import { InfluxDB } from '@influxdata/influxdb-client';
+
 /**
  * The data controller.
  * Interfaces with the python hardware controller.
  */
 export class DataController {
+    /**
+     * The controller's influx DB.
+     */
+    public influx?: InfluxDB;
+
     /**
      * Dummy sensor data used if dummy is set to `true` when initializing the DataController.
      */
@@ -37,9 +44,7 @@ export class DataController {
 
             this._dummyLive = createLiveDummyData(this._dummy, constants.DUMMY_DATA_VALUES.liveDataMaxAdd, constants.DUMMY_DATA_VALUES.liveDataMinAdd);
         } else {
-            /**
-             * @todo Setup InfluxDB and IPC to retrieve data.
-             */
+            this.influx = new InfluxDB({ url: process.env.INFLUX_URL ?? constants.DEFAULT_INFLUX_URL });
         }
     }
 
@@ -50,9 +55,7 @@ export class DataController {
     public get sensors(): SensorData[] {
         if (this._dummy) return this._dummy;
         else {
-            /**
-             * @todo Fetch data from InfluxDB.
-             */
+            this.influx!.getQueryApi(process.env.INFLUX_ORG ?? constants.DEFAULT_INFLUX_ORG).queryRaw(`select value from proximity`);
             return [];
         }
     }

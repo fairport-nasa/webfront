@@ -20,6 +20,14 @@ export const constants = {
      */
     DEFAULT_DUMMY_DATA: false,
     /**
+     * The default influx org.
+     */
+    DEFAULT_INFLUX_ORG: `nanolab`,
+    /**
+     * The default influx URL.
+     */
+    DEFAULT_INFLUX_URL: `http://localhost:8086`,
+    /**
      * The default live data interval.
      */
     DEFAULT_LIVE_DATA_INTERVAL: 100,

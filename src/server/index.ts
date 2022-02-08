@@ -14,6 +14,12 @@ config();
 if (!process.env.DUMMY_DATA) log(`yellow`, `WARN`, `DUMMY_DATA is not set. Defaulting to "${constants.DEFAULT_DUMMY_DATA}".`);
 else if (process.env.DUMMY_DATA !== `true` && process.env.DUMMY_DATA !== `false`) throw new Error(`DUMMY_DATA is not true or false.`);
 
+if (!process.env.INFLUX_ORG) log(`yellow`, `WARN`, `INFLUX_ORG is not set. Defaulting to "${constants.DEFAULT_INFLUX_ORG}".`);
+else if (typeof process.env.INFLUX_ORG !== `string`) throw new Error(`INFLUX_ORG is not a string.`);
+
+if (!process.env.INFLUX_URL) log(`yellow`, `WARN`, `INFLUX_URL is not set. Defaulting to "${constants.DEFAULT_INFLUX_URL}".`);
+else if (typeof process.env.INFLUX_URL !== `string`) throw new Error(`INFLUX_URL is not a string.`);
+
 if (!process.env.LIVE_DATA_INTERVAL) log(`yellow`, `WARN`, `LIVE_DATA_INTERVAL is not set. Defaulting to "${constants.DEFAULT_LIVE_DATA_INTERVAL}".`);
 else if (isNaN(parseInt(process.env.LIVE_DATA_INTERVAL))) throw new Error(`LIVE_DATA_INTERVAL is not a number.`);
 
