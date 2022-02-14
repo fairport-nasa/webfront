@@ -30,7 +30,7 @@ const startServer = async (data, config) => {
         return reply.sendFile(`index.html`);
     });
     server.get(`/data`, (_, res) => void res.send(data.sensors));
-    server.get(`/functions`, (_, res) => void res.send(config));
+    server.get(`/config`, (_, res) => void res.send(config));
     await server.listen(port, constants_1.constants.HOST);
     return server;
 };
