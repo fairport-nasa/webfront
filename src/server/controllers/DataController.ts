@@ -3,6 +3,7 @@ import { createDummyData, createLiveDummyData, updateLiveDummyData } from '../ut
 import { SensorData, SensorDataLive } from '../../global/types/sensors';
 
 import { InfluxDB } from '@influxdata/influxdb-client';
+import { URL } from 'url';
 
 /**
  * The data controller.
@@ -44,7 +45,7 @@ export class DataController {
 
             this._dummyLive = createLiveDummyData(this._dummy, constants.DUMMY_DATA_VALUES.liveDataMaxAdd, constants.DUMMY_DATA_VALUES.liveDataMinAdd);
         } else {
-            this.influx = new InfluxDB({ url: process.env.INFLUX_URL ?? constants.DEFAULT_INFLUX_URL });
+            this.influx = new InfluxDB({ url: new URL(`/${process.env.INFLUX_ORG ?? constants.DEFAULT_INFLUX_ORG}`, process.env.INFLUX_URL ?? constants.DEFAULT_INFLUX_URL).toString() });
         }
     }
 
