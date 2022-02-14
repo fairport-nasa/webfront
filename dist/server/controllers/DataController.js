@@ -4,6 +4,7 @@ exports.DataController = void 0;
 const constants_1 = require("../../global/constants");
 const dummyData_1 = require("../utils/dummyData");
 const influxdb_client_1 = require("@influxdata/influxdb-client");
+const url_1 = require("url");
 class DataController {
     constructor(dummy) {
         if (dummy) {
@@ -11,7 +12,7 @@ class DataController {
             this._dummyLive = (0, dummyData_1.createLiveDummyData)(this._dummy, constants_1.constants.DUMMY_DATA_VALUES.liveDataMaxAdd, constants_1.constants.DUMMY_DATA_VALUES.liveDataMinAdd);
         }
         else {
-            this.influx = new influxdb_client_1.InfluxDB({ url: process.env.INFLUX_URL ?? constants_1.constants.DEFAULT_INFLUX_URL });
+            this.influx = new influxdb_client_1.InfluxDB({ url: new url_1.URL(`/${process.env.INFLUX_ORG ?? constants_1.constants.DEFAULT_INFLUX_ORG}`, process.env.INFLUX_URL ?? constants_1.constants.DEFAULT_INFLUX_URL).toString() });
         }
     }
     get sensors() {
