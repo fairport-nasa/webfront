@@ -2,7 +2,7 @@ import { constants } from '../../global/constants';
 import { createDummyData, createLiveDummyData, updateLiveDummyData } from '../utils/dummyData';
 import { SensorData, SensorDataLive } from '../../global/types/sensors';
 
-import { InfluxDB } from '@influxdata/influxdb-client';
+import { FieldType, InfluxDB } from 'influx';
 import { URL } from 'url';
 
 /**
@@ -44,8 +44,22 @@ export class DataController {
             );
 
             this._dummyLive = createLiveDummyData(this._dummy, constants.DUMMY_DATA_VALUES.liveDataMaxAdd, constants.DUMMY_DATA_VALUES.liveDataMinAdd);
-        } else {
-            this.influx = new InfluxDB({ url: new URL(`/${process.env.INFLUX_ORG ?? constants.DEFAULT_INFLUX_ORG}`, process.env.INFLUX_URL ?? constants.DEFAULT_INFLUX_URL).toString() });
+        } else { this.influx = new InfluxDB({
+            host: 'localhost',
+            database: 'express_response_db',
+            schema: [
+              {
+                measurement: 'response_times',
+                fields: {
+                  path: FieldType.STRING,
+                  duration: FieldType.INTEGER
+                },
+                tags: [
+                  'host'
+                ]
+              }
+            ]
+          })
         }
     }
 
@@ -56,7 +70,7 @@ export class DataController {
     public get sensors(): SensorData[] {
         if (this._dummy) return this._dummy;
         else {
-            this.influx!.getQueryApi(process.env.INFLUX_ORG ?? constants.DEFAULT_INFLUX_ORG).queryRaw(`select value from proximity`).then(console.log);
+            this.influx!.query(`select value from proximity`).then(console.log);
             return [];
         }
     }
